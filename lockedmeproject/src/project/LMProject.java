@@ -1,7 +1,12 @@
+//Abdelali Eljaouhari
+//LockedMe Application
+//1/18/2021
+
 package project;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -10,10 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-/**
- * Hello world!
- *
- */
+
 public class LMProject 
 {
 
@@ -28,11 +30,16 @@ public class LMProject
 
     }
     
-    //private static void searchForAFile() {
-    
-    	
-    	
-   
+    private static void searchForAFile() {
+    	System.out.print("Please enter the file you are searching for: ");
+    	String filePath = scanner.nextLine();
+    	if(!Files.exists(Paths.get(filePath))) {
+    		System.out.println("File not found!");
+    		return;
+    	}else { 
+    		System.out.println("File found! Path: " + filePath);
+    	}
+    }
     
     private static void deleteAFile() {
     	System.out.print("Please enter a file path: ");
@@ -79,7 +86,7 @@ public class LMProject
     }
 
     private static void addAFile() throws InvalidPathException {
-        System.out.print("Please provide a file path:");
+        System.out.print("Please provide a file path: ");
         String filePath = scanner.nextLine();
         Path path = Paths.get(filePath);
 
@@ -113,7 +120,7 @@ public class LMProject
             	deleteAFile();
                 break;
             case "3":
-            	//searchForAFile();
+            	searchForAFile();
                 break;
             case "4":
             	showMainMenu();
@@ -124,7 +131,8 @@ public class LMProject
 
     private static void showFilesInAscendingOrder() {
         System.out.println("------------------");
-        System.out.println("Showing files in ascending order");
+        System.out.println("Displaying files in ascending order: ");
+        System.out.println("------------------");
         File[] files = new File(FOLDER).listFiles();
         Set<String> sorted = new TreeSet<>();
         for (File file: files) {
